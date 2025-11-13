@@ -1,0 +1,10 @@
+{
+  "name": "auditiq-monorepo",
+  "version": "1.0.0",
+  "description": "AI-Powered Audit Automation Platform",
+  "scripts": {
+    "start": "./start-dev.sh",
+    "stop": "./stop-dev.sh",
+    "test": "cd backend/spring-boot-service && mvn test && cd ../../frontend/react-app && npm test"
+  }
+}

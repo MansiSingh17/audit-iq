@@ -1,0 +1,305 @@
+# ============================================
+# SECURITY - SENSITIVE FILES (HIGH PRIORITY)
+# ============================================
+
+# AWS Credentials and Keys
+.aws/
+aws-credentials*
+.aws-credentials*
+*aws-access-key*
+*aws-secret-key*
+*aws_access_key*
+*aws_secret_key*
+*.pem
+*.ppk
+
+# Environment Variables and Configuration
+.env
+.env.*
+.envrc
+config.env
+secrets.env
+
+# API Keys and Tokens
+*api-key*
+*api_key*
+*secret-key*
+*secret_key*
+*access-token*
+*access_token*
+*client-secret*
+*client_secret*
+*auth-token*
+*auth_token*
+
+# Database Credentials
+*db-password*
+*db_password*
+*database-url*
+*database_url*
+*connection-string*
+*connection_string*
+
+# Certificates and Keys
+*.key
+*.crt
+*.cert
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.truststore
+
+# SSH Keys
+*id_rsa*
+*id_dsa*
+*id_ecdsa*
+*id_ed25519*
+*.pub
+.ssh/
+
+# Docker and Kubernetes Secrets
+*docker-secret*
+*k8s-secret*
+*kube-secret*
+secret.yaml
+secrets.yaml
+
+# Application-specific secrets
+application-secrets.*
+application-local.*
+bootstrap-local.*
+
+# Spring Boot specific sensitive files
+backend/spring-boot-service/.env
+backend/spring-boot-service/application-secrets.properties
+backend/spring-boot-service/src/main/resources/application-local.properties
+backend/spring-boot-service/src/main/resources/application-secrets.properties
+
+# Python ML service secrets
+backend/python-ml-service/.env
+backend/python-ml-service/config.py
+backend/python-ml-service/secrets.py
+
+# Frontend secrets  
+frontend/react-app/.env
+frontend/react-app/.env.local
+frontend/react-app/.env.production
+
+# Infrastructure secrets
+infrastructure/**/.env
+infrastructure/**/secrets.yaml
+infrastructure/**/secret.yaml
+
+# ============================================
+# BUILD ARTIFACTS AND DEPENDENCIES
+# ============================================
+
+# Java/Maven/Spring Boot
+backend/spring-boot-service/target/
+*.jar
+*.war
+*.ear
+*.class
+.mvn/wrapper/maven-wrapper.jar
+
+# Node.js/React
+frontend/react-app/node_modules/
+frontend/react-app/build/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+
+# Python
+backend/python-ml-service/__pycache__/
+backend/python-ml-service/*.py[cod]
+backend/python-ml-service/*$py.class
+backend/python-ml-service/dist/
+backend/python-ml-service/build/
+backend/python-ml-service/*.egg-info/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# ============================================
+# INFRASTRUCTURE AND DEPLOYMENT
+# ============================================
+
+# Terraform
+infrastructure/terraform/.terraform/
+infrastructure/terraform/*.tfstate
+infrastructure/terraform/*.tfstate.backup
+infrastructure/terraform/.terraform.lock.hcl
+infrastructure/terraform/*.tfvars
+infrastructure/terraform/terraform.tfvars
+
+# Docker
+.docker/
+
+# Kubernetes
+*.kubeconfig
+kubeconfig
+
+# ============================================
+# DEVELOPMENT TOOLS AND IDEs
+# ============================================
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Eclipse
+.metadata
+.classpath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# NetBeans
+nbproject/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+# ============================================
+# OPERATING SYSTEMS
+# ============================================
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================
+# LOGS AND TEMPORARY FILES
+# ============================================
+
+# Logs
+logs/
+*.log
+log/
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+*.tmp
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+*.lock
+
+# ============================================
+# DATA AND MODELS
+# ============================================
+
+# Large data files
+*.csv
+*.json
+*.txt
+*.xlsx
+*.xls
+!package.json
+!tsconfig.json
+!.env.example
+
+# ML Models
+*.bin
+*.pt
+*.pth
+*.pkl
+*.pickle
+*.model
+*.h5
+
+# ============================================
+# TESTING AND COVERAGE
+# ============================================
+
+# Test results
+/coverage/
+.nyc_output/
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+*.cover
+junit.xml
+test-results/
+
+# ============================================
+# MISCELLANEOUS
+# ============================================
+
+# Backup files
+*.orig
+*.rej
+
+# Archive files (if sensitive)
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+
+# Cache directories
+.cache/
+.npm/
+.yarn/
+
+# Package manager files
+package-lock.json
+yarn.lock
+Pipfile.lock
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
