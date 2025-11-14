@@ -2,18 +2,17 @@ import React, { useState, useRef } from 'react';
 import { Upload, FileText } from 'lucide-react';
 import { documentService } from '../services/documentService';
 import type { AuditDocument } from '../services/documentService';
-import Card from './common/Card';
 import Button from './common/Button';
 import ProgressBar from './common/ProgressBar';
 import Alert from './common/Alert';
 import toast from 'react-hot-toast';
 
 const COMPLIANCE_STANDARDS = [
-  { value: 'ISO_27001', label: 'ISO 27001:2022 - Information Security' },
-  { value: 'GDPR', label: 'GDPR - Data Protection' },
-  { value: 'HIPAA', label: 'HIPAA - Healthcare Privacy' },
-  { value: 'SOC2', label: 'SOC 2 - Service Organization Control' },
-  { value: 'PCI_DSS', label: 'PCI DSS - Payment Card Security' },
+  { value: 'ISO_27001', label: 'ISO 27001:2022 - Information Security', icon: '🔒' },
+  { value: 'GDPR', label: 'GDPR - Data Protection', icon: '🛡️' },
+  { value: 'HIPAA', label: 'HIPAA - Healthcare Privacy', icon: '🏥' },
+  { value: 'SOC2', label: 'SOC 2 - Service Organization Control', icon: '📋' },
+  { value: 'PCI_DSS', label: 'PCI DSS - Payment Card Security', icon: '💳' },
 ];
 
 interface DocumentUploadProps {
@@ -32,7 +31,7 @@ const DocumentUpload: React.FC<DocumentUploadProps> = ({
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  const uploadInProgressRef = useRef(false); // Prevent duplicate uploads
+  const uploadInProgressRef = useRef(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -43,7 +42,6 @@ const DocumentUpload: React.FC<DocumentUploadProps> = ({
   };
 
   const handleUpload = async () => {
-    // Prevent duplicate uploads
     if (uploadInProgressRef.current) {
       console.warn('⚠️ Upload already in progress, ignoring duplicate request');
       return;
@@ -54,7 +52,6 @@ const DocumentUpload: React.FC<DocumentUploadProps> = ({
       return;
     }
 
-    // Set upload lock
     uploadInProgressRef.current = true;
     setUploading(true);
     setUploadProgress(0);
@@ -68,17 +65,14 @@ const DocumentUpload: React.FC<DocumentUploadProps> = ({
       console.log('✅ Upload successful');
       toast.success('Document uploaded successfully!');
       
-      // Clear form
       setFile(null);
       setUploadProgress(100);
       
-      // Reset file input
       const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
       if (fileInput) {
         fileInput.value = '';
       }
       
-      // Notify parent
       onUploadComplete();
       
     } catch (err: any) {
@@ -88,9 +82,8 @@ const DocumentUpload: React.FC<DocumentUploadProps> = ({
       toast.error(errorMessage);
     } finally {
       setUploading(false);
-      uploadInProgressRef.current = false; // Release upload lock
+      uploadInProgressRef.current = false;
       
-      // Reset progress after a delay
       setTimeout(() => {
         setUploadProgress(0);
       }, 2000);
@@ -99,57 +92,72 @@ const DocumentUpload: React.FC<DocumentUploadProps> = ({
 
   return (
     <div className="space-y-6">
-      <Card>
+      <div className="card-corporate">
         <div className="p-6">
-          <h2 className="text-2xl font-bold mb-6">Upload Audit Document</h2>
+          <h2 className="text-corporate-primary text-2xl mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>Upload Audit Document</h2>
           
-          <div className="space-y-4">
+          <div className="space-y-6">
+            {/* Standard Selection */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider" style={{ fontFamily: 'Inter, sans-serif' }}>
                 Compliance Standard
               </label>
               <select
                 value={standard}
                 onChange={(e) => setStandard(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="input-corporate"
                 disabled={uploading}
               >
                 {COMPLIANCE_STANDARDS.map((std) => (
                   <option key={std.value} value={std.value}>
-                    {std.label}
+                    {std.icon} {std.label}
                   </option>
                 ))}
               </select>
             </div>
 
+            {/* File Upload */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider" style={{ fontFamily: 'Inter, sans-serif' }}>
                 Document File
               </label>
-              <div className="flex items-center justify-center w-full">
-                <label className={`flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-gray-50 ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
-                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <Upload className="w-10 h-10 mb-3 text-gray-400" />
-                    <p className="mb-2 text-sm text-gray-500">
-                      <span className="font-semibold">Click to upload</span> or drag and drop
-                    </p>
-                    <p className="text-xs text-gray-500">PDF, DOC, DOCX (MAX. 10MB)</p>
-                  </div>
+              <div className="relative">
+                <div className={`border-2 border-dashed border-slate-300 rounded-2xl p-10 text-center transition-all ${uploading ? 'opacity-50 cursor-not-allowed bg-slate-50' : 'hover:border-blue-900 hover:bg-slate-50 cursor-pointer'}`}>
+                  <Upload className={`w-16 h-16 mx-auto mb-4 transition-all ${uploading ? 'text-slate-300' : 'text-slate-400'}`} strokeWidth={2} />
                   <input
                     type="file"
                     className="hidden"
                     onChange={handleFileChange}
                     accept=".pdf,.doc,.docx,.txt"
                     disabled={uploading}
+                    id="file-upload-input"
                   />
-                </label>
+                  <label htmlFor="file-upload-input" className={uploading ? 'cursor-not-allowed' : 'cursor-pointer'}>
+                    <span className="text-blue-900 hover:text-amber-600 font-bold text-lg transition-colors">
+                      Click to upload
+                    </span>
+                    <span className="text-slate-600"> or drag and drop</span>
+                  </label>
+                  <p className="text-sm text-slate-500 mt-3">
+                    PDF, DOC, DOCX (MAX. 10MB)
+                  </p>
+                </div>
+                {file && (
+                  <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl">
+                    <div className="flex items-center gap-3">
+                      <div className="icon-container-corporate w-10 h-10">
+                        <FileText className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-blue-900">{file.name}</p>
+                        <p className="text-xs text-blue-700">
+                          {(file.size / 1024 / 1024).toFixed(2)} MB
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-              {file && (
-                <p className="mt-2 text-sm text-gray-600 flex items-center">
-                  <FileText className="w-4 h-4 mr-2" />
-                  {file.name} ({(file.size / 1024 / 1024).toFixed(2)} MB)
-                </p>
-              )}
             </div>
 
             {uploadProgress > 0 && uploadProgress < 100 && (
@@ -165,31 +173,32 @@ const DocumentUpload: React.FC<DocumentUploadProps> = ({
               disabled={!file || uploading}
               variant="primary"
               fullWidth
+              className="btn-corporate-primary text-lg py-4"
             >
               {uploading ? 'Uploading...' : 'Upload Document'}
             </Button>
           </div>
         </div>
-      </Card>
+      </div>
 
       {documents.length > 0 && (
-        <Card>
+        <div className="card-corporate">
           <div className="p-6">
-            <h3 className="text-lg font-semibold mb-4">Recent Uploads</h3>
+            <h3 className="text-lg font-bold text-slate-900 mb-4 uppercase tracking-wider" style={{ fontFamily: 'Inter, sans-serif' }}>Recent Uploads</h3>
             <div className="space-y-2">
               {documents.slice(0, 5).map((doc) => (
                 <div
                   key={doc.id}
                   onClick={() => onDocumentSelect(doc)}
-                  className="p-3 border rounded-lg hover:bg-gray-50 cursor-pointer"
+                  className="p-4 border-2 border-slate-200 rounded-xl hover:border-blue-900 hover:bg-slate-50 cursor-pointer transition-all hover-lift-corporate"
                 >
-                  <p className="font-medium">{doc.fileName}</p>
-                  <p className="text-sm text-gray-500">{doc.standard}</p>
+                  <p className="font-bold text-slate-900" style={{ fontFamily: 'Inter, sans-serif' }}>{doc.fileName}</p>
+                  <p className="text-sm text-slate-600">{doc.standard}</p>
                 </div>
               ))}
             </div>
           </div>
-        </Card>
+        </div>
       )}
     </div>
   );

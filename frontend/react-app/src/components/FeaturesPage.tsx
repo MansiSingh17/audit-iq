@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
@@ -12,238 +12,229 @@ import {
   BarChart3,
   Zap,
   Target,
-  TrendingUp,
   ArrowRight,
-  Moon,
-  Sun
+  CheckCircle2,
+  TrendingUp
 } from 'lucide-react';
 
 const FeaturesPage: React.FC = () => {
   const navigate = useNavigate();
-  const [darkMode, setDarkMode] = useState(false);
-  const [typewriterText, setTypewriterText] = useState('');
-  const fullText = 'Audit-IQ Features';
-
-  // Typewriter effect
-  useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index <= fullText.length) {
-        setTypewriterText(fullText.slice(0, index));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 100);
-    return () => clearInterval(timer);
-  }, []);
 
   const features = [
     {
       id: 'dashboard',
       title: 'Dashboard',
-      description: 'Central hub for document management',
-      icon: <LayoutDashboard className="w-7 h-7" />,
-      color: 'from-blue-500 to-indigo-600',
+      description: 'Centralized compliance overview and document management hub',
+      icon: <LayoutDashboard className="w-7 h-7" strokeWidth={2} />,
       path: '/dashboard',
-      emoji: '📊'
+      metric: '360° View'
     },
     {
       id: 'documents',
       title: 'Documents',
-      description: 'Manage compliance documents',
-      icon: <FileText className="w-7 h-7" />,
-      color: 'from-indigo-500 to-purple-600',
+      description: 'Secure document repository with intelligent organization',
+      icon: <FileText className="w-7 h-7" strokeWidth={2} />,
       path: '/documents',
-      emoji: '📁'
+      metric: 'Cloud Storage'
     },
     {
       id: 'ai-analysis',
       title: 'AI Analysis',
-      description: 'Intelligent compliance analysis',
-      icon: <Brain className="w-7 h-7" />,
-      color: 'from-purple-500 to-pink-600',
+      description: 'Advanced compliance gap analysis powered by machine learning',
+      icon: <Brain className="w-7 h-7" strokeWidth={2} />,
       path: '/analyze',
-      emoji: '🤖'
+      metric: 'AI-Powered',
+      badge: 'AI'
     },
     {
       id: 'audit-findings',
       title: 'Audit Findings',
-      description: 'Auto-generate findings & remediation',
-      icon: <Shield className="w-7 h-7" />,
-      color: 'from-pink-500 to-rose-600',
+      description: 'Automated findings generation with remediation workflows',
+      icon: <Shield className="w-7 h-7" strokeWidth={2} />,
       path: '/findings',
-      emoji: '🎯'
+      metric: 'Auto-Track'
     },
     {
       id: 'ai-chat',
-      title: 'AI Chat',
-      description: 'Get instant compliance answers',
-      icon: <MessageSquare className="w-7 h-7" />,
-      color: 'from-rose-500 to-red-600',
+      title: 'AI Assistant',
+      description: 'Expert compliance guidance and instant answers',
+      icon: <MessageSquare className="w-7 h-7" strokeWidth={2} />,
       path: '/chat',
-      emoji: '💬',
+      metric: '24/7 Support',
       badge: 'AI'
     },
     {
       id: 'checklist',
-      title: 'Checklist',
-      description: 'Generate compliance checklists',
-      icon: <CheckSquare className="w-7 h-7" />,
-      color: 'from-cyan-500 to-blue-600',
+      title: 'Checklist Generator',
+      description: 'Automated compliance checklist creation and tracking',
+      icon: <CheckSquare className="w-7 h-7" strokeWidth={2} />,
       path: '/generate-checklist',
-      emoji: '✅'
+      metric: 'Auto-Gen'
     },
     {
       id: 'grammar',
-      title: 'Grammar',
-      description: 'AI-powered writing enhancement',
-      icon: <Sparkles className="w-7 h-7" />,
-      color: 'from-green-500 to-emerald-600',
+      title: 'Grammar & Style',
+      description: 'Professional audit report writing assistance',
+      icon: <Sparkles className="w-7 h-7" strokeWidth={2} />,
       path: '/grammar',
-      emoji: '✨'
-    },
-    {
-      id: 'risk',
-      title: 'Risk Assessment',
-      description: 'Analyze & score compliance risks',
-      icon: <TrendingUp className="w-7 h-7" />,
-      color: 'from-orange-500 to-amber-600',
-      path: '/risk/1',
-      emoji: '⚠️'
+      metric: 'Claude AI'
     }
   ];
 
   const stats = [
-    { label: 'AI-Powered Features', value: '8', icon: <Zap className="w-6 h-6" />, color: 'from-yellow-500 to-orange-600' },
-    { label: 'Compliance Standards', value: '3+', icon: <Shield className="w-6 h-6" />, color: 'from-blue-500 to-indigo-600' },
-    { label: 'Time Saved', value: '85%', icon: <Target className="w-6 h-6" />, color: 'from-green-500 to-emerald-600' },
-    { label: 'Accuracy Rate', value: '99%', icon: <BarChart3 className="w-6 h-6" />, color: 'from-purple-500 to-pink-600' }
+    { 
+      label: 'Efficiency Gain', 
+      value: '70%', 
+      icon: <TrendingUp className="w-6 h-6" strokeWidth={2.5} />,
+      color: 'success'
+    },
+    { 
+      label: 'Standards Supported', 
+      value: '3', 
+      icon: <Shield className="w-6 h-6" strokeWidth={2.5} />,
+      color: 'professional'
+    },
+    { 
+      label: 'AI Features', 
+      value: '7', 
+      icon: <Zap className="w-6 h-6" strokeWidth={2.5} />,
+      color: 'gold'
+    },
+    { 
+      label: 'Accuracy Rate', 
+      value: '99%', 
+      icon: <Target className="w-6 h-6" strokeWidth={2.5} />,
+      color: 'corporate'
+    }
+  ];
+
+  const standards = [
+    { name: 'ISO 27001:2022', icon: '🔒', controls: '93 Controls' },
+    { name: 'GDPR', icon: '🛡️', controls: '99 Articles' },
+    { name: 'HIPAA', icon: '🏥', controls: '45+ Requirements' }
   ];
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50'} relative overflow-hidden transition-colors duration-500`}>
-      {/* Dark Mode Toggle */}
-      <button
-        onClick={() => setDarkMode(!darkMode)}
-        className="fixed top-20 right-6 z-50 p-3 rounded-full bg-white/90 dark:bg-gray-800 shadow-lg hover:scale-110 transition-all backdrop-blur-xl border-2 border-gray-200"
-      >
-        {darkMode ? <Sun className="w-6 h-6 text-yellow-500" /> : <Moon className="w-6 h-6 text-indigo-600" />}
-      </button>
+    <div className="min-h-screen bg-slate-50 relative overflow-hidden">
+      {/* Professional Background Pattern */}
+      <div className="absolute inset-0 bg-audit-pattern opacity-50 pointer-events-none"></div>
+      
+      {/* Subtle corner gradient accent */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-blue-900/5 via-transparent to-transparent pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-amber-500/5 via-transparent to-transparent pointer-events-none"></div>
 
-      {/* Enhanced Animated Background with Particles */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzkzYzVmZCIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIiAvPjwvc3ZnPg==')] opacity-40"></div>
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/20 via-indigo-400/15 to-transparent rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-indigo-400/20 via-purple-400/15 to-transparent rounded-full blur-3xl animate-float-delayed"></div>
-        <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-purple-400/10 via-pink-400/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         
-        {/* Floating Particles */}
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-blue-500/30 rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${10 + Math.random() * 10}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-        {/* Hero Section - Enhanced with Typewriter */}
-        <div className="text-center mb-12 sm:mb-16">
-          <div className="inline-block mb-6">
-            <div className="relative animate-bounce-slow">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 rounded-2xl blur-2xl opacity-50 animate-pulse"></div>
-              <div className="relative w-20 h-20 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
-                <Sparkles className="w-10 h-10 text-white animate-spin-slow" />
-              </div>
-            </div>
+        {/* Professional Hero Section */}
+        <div className="text-center mb-16 animate-fade-in">
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 backdrop-blur-sm border-2 border-slate-200 rounded-full shadow-corporate">
+            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+            <span className="text-sm font-bold text-slate-700 uppercase tracking-wider">Enterprise-Grade Platform</span>
           </div>
           
-          {/* Typewriter Effect */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent min-h-[1.2em]">
-            {typewriterText}
-            <span className="animate-blink">|</span>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 text-slate-900" style={{ fontFamily: 'Poppins, sans-serif', letterSpacing: '-0.03em' }}>
+            Audit<span className="text-amber-600">IQ</span> Features
           </h1>
           
-          <p className={`text-base sm:text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'} max-w-2xl mx-auto animate-fade-in-up`}>
-            AI-powered compliance automation platform
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed mb-8">
+            Professional audit automation platform powered by advanced AI and machine learning
           </p>
+
+          {/* Standards Badges */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {standards.map((standard) => (
+              <div key={standard.name} className="flex items-center gap-2 px-5 py-3 bg-white border-2 border-slate-200 rounded-xl shadow-corporate hover:shadow-corporate-lg hover:border-amber-200 transition-all duration-300 group">
+                <span className="text-2xl group-hover:scale-110 transition-transform">{standard.icon}</span>
+                <div className="text-left">
+                  <div className="text-sm font-bold text-slate-900">{standard.name}</div>
+                  <div className="text-xs text-slate-500">{standard.controls}</div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Stats Grid - Enhanced with 3D Effect */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16">
+        {/* Professional Stats Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16 animate-slide-up">
           {stats.map((stat, idx) => (
-            <div
-              key={stat.label}
-              className="group relative transform perspective-1000 hover:scale-105 transition-all duration-500"
-              style={{ animationDelay: `${idx * 100}ms` }}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-20 blur-xl transition-opacity rounded-2xl`}></div>
-              <div className={`relative ${darkMode ? 'bg-gray-800/95' : 'bg-white/95'} backdrop-blur-xl rounded-2xl p-4 sm:p-6 border-2 ${darkMode ? 'border-gray-700' : 'border-gray-200'} shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 hover:border-blue-300 group-hover:rotate-y-6`}>
-                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center text-white mb-3 sm:mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-transform`}>
+            <div key={stat.label} className="group" style={{ animationDelay: `${idx * 100}ms` }}>
+              <div className="card-corporate hover-lift-corporate p-6">
+                <div className={`w-14 h-14 rounded-xl mb-4 flex items-center justify-center shadow-md
+                  ${stat.color === 'gold' ? 'bg-gold-gradient text-white' :
+                    stat.color === 'success' ? 'bg-success-gradient text-white' :
+                    stat.color === 'professional' ? 'bg-gradient-to-br from-blue-800 to-blue-900 text-white' :
+                    'bg-corporate-gradient text-white'}`}>
                   {stat.icon}
                 </div>
-                <div className={`text-3xl sm:text-4xl font-black mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                <div className={`text-4xl font-black mb-2
+                  ${stat.color === 'gold' ? 'text-amber-600' :
+                    stat.color === 'success' ? 'text-emerald-600' :
+                    stat.color === 'professional' ? 'text-blue-900' :
+                    'text-slate-900'}`}>
                   {stat.value}
                 </div>
-                <div className={`text-xs sm:text-sm font-bold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{stat.label}</div>
+                <div className="text-sm font-bold text-slate-600 uppercase tracking-wider">
+                  {stat.label}
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Features Grid - Enhanced with 3D Hover */}
-        <div className="mb-12 sm:mb-16">
-          <h2 className={`text-3xl sm:text-4xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-3 text-center`}>
-            Explore All Features
-          </h2>
-          <p className={`text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-8 sm:mb-10`}>
-            Click any feature to get started
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        {/* Professional Features Grid */}
+        <div className="mb-16">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-black text-slate-900 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              Comprehensive Feature Suite
+            </h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Everything you need for professional compliance management
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, idx) => (
               <div
                 key={feature.id}
                 onClick={() => navigate(feature.path)}
-                className="group cursor-pointer transform perspective-1000 animate-fade-in-up"
+                className="group cursor-pointer animate-scale-in"
                 style={{ animationDelay: `${idx * 50}ms` }}
               >
-                <div className="relative h-full">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-30 blur-xl transition-all duration-300 rounded-2xl`}></div>
+                <div className="card-corporate hover-lift-corporate h-full p-6 relative overflow-hidden">
+                  {/* Top accent bar */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
-                  <div className={`relative h-full ${darkMode ? 'bg-gray-800/95' : 'bg-white/95'} backdrop-blur-xl border-2 ${darkMode ? 'border-gray-700 group-hover:border-blue-500' : 'border-gray-200 group-hover:border-blue-400'} rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 group-hover:rotate-y-5 group-hover:scale-105`}>
-                    {/* Icon with Emoji Background */}
-                    <div className="relative mb-4">
-                      <div className="text-5xl absolute -top-2 -right-2 opacity-10 group-hover:opacity-20 transition-opacity group-hover:scale-125 group-hover:rotate-12">
-                        {feature.emoji}
-                      </div>
-                      <div className={`relative w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                  {/* Icon Container */}
+                  <div className="mb-5">
+                    <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-slate-900 to-blue-900 flex items-center justify-center shadow-corporate group-hover:shadow-gold-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+                      <div className="text-amber-400">
                         {feature.icon}
                       </div>
-                      {feature.badge && (
-                        <div className="absolute -top-1 -right-1 px-2 py-0.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold rounded-full shadow-md animate-pulse">
-                          {feature.badge}
-                        </div>
-                      )}
                     </div>
+                    {feature.badge && (
+                      <span className="inline-block mt-3 px-3 py-1 text-xs font-bold bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg shadow-gold uppercase tracking-wider">
+                        {feature.badge}
+                      </span>
+                    )}
+                  </div>
 
-                    <h3 className={`text-lg font-bold ${darkMode ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'} mb-2 transition-colors`}>
-                      {feature.title}
-                    </h3>
-                    <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'} leading-relaxed mb-4`}>
-                      {feature.description}
-                    </p>
+                  {/* Content */}
+                  <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-900 transition-colors">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-4">
+                    {feature.description}
+                  </p>
 
-                    <div className={`flex items-center gap-2 text-sm font-bold bg-gradient-to-r ${feature.color} bg-clip-text text-transparent`}>
-                      <span>Open</span>
-                      <ArrowRight className="w-4 h-4 text-blue-600 group-hover:translate-x-2 transition-transform" />
-                    </div>
+                  {/* Metric Badge */}
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100 border border-slate-200 rounded-lg text-xs font-bold text-slate-700 group-hover:bg-amber-50 group-hover:border-amber-200 group-hover:text-amber-700 transition-all duration-300">
+                    <div className="w-1.5 h-1.5 bg-amber-500 rounded-full"></div>
+                    {feature.metric}
+                  </div>
+
+                  {/* Hover Arrow */}
+                  <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                    <ArrowRight className="w-5 h-5 text-amber-600" strokeWidth={2.5} />
                   </div>
                 </div>
               </div>
@@ -251,87 +242,104 @@ const FeaturesPage: React.FC = () => {
           </div>
         </div>
 
-        {/* CTA Section - Enhanced */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-8 sm:p-12 shadow-2xl hover:shadow-3xl transition-shadow">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIgLz48L3N2Zz4=')] opacity-20"></div>
+        {/* Professional CTA Section */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 p-12 shadow-premium">
+          {/* Decorative pattern overlay */}
+          <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10 L40 15 L40 30 Q40 40 30 45 Q20 40 20 30 L20 15 Z' fill='none' stroke='white' stroke-width='1'/%3E%3C/svg%3E")`,
+            backgroundSize: '60px 60px'
+          }}></div>
           
-          {/* Floating Decorations */}
-          <div className="absolute top-8 left-8 w-16 h-16 bg-white/10 rounded-full blur-xl animate-float"></div>
-          <div className="absolute bottom-8 right-8 w-24 h-24 bg-white/10 rounded-full blur-2xl animate-float-delayed"></div>
+          {/* Gold accent lines */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
           
           <div className="relative text-center">
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 animate-fade-in">
-              Ready to Transform Your Audits?
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full">
+              <Sparkles className="w-4 h-4 text-amber-400" />
+              <span className="text-sm font-bold text-white uppercase tracking-wider">Ready to Get Started?</span>
+            </div>
+
+            <h2 className="text-4xl sm:text-5xl font-black text-white mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              Transform Your Audit Process
             </h2>
-            <p className="text-blue-100 text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
-              Start automating your compliance workflow today. Reduce audit prep time by <span className="text-yellow-300 font-black text-xl sm:text-2xl">85%</span>
+            <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Join leading organizations using AI to streamline compliance and reduce audit time by <span className="text-amber-400 font-bold">70%</span>
             </p>
-            <div className="flex gap-3 sm:gap-4 justify-center flex-wrap">
+
+            {/* Professional CTAs */}
+            <div className="flex gap-4 justify-center flex-wrap">
               <button
                 onClick={() => navigate('/analyze')}
-                className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-600 rounded-xl font-bold shadow-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-2 text-sm sm:text-base"
+                className="group px-8 py-4 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-900 rounded-xl font-bold shadow-gold-lg hover:shadow-gold transition-all duration-300 flex items-center gap-3 hover:scale-105"
               >
-                <Upload className="w-4 h-4 sm:w-5 sm:h-5" />
-                Upload Document
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Upload className="w-5 h-5 group-hover:scale-110 transition-transform" strokeWidth={2.5} />
+                Start Analysis
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" strokeWidth={2.5} />
               </button>
+              
               <button
                 onClick={() => navigate('/chat')}
-                className="px-6 sm:px-8 py-3 sm:py-4 bg-white/20 backdrop-blur-xl text-white border-2 border-white/50 rounded-xl font-bold hover:bg-white/30 hover:scale-105 transition-all flex items-center gap-2 text-sm sm:text-base"
+                className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-xl font-bold hover:bg-white/20 hover:border-white/50 transition-all duration-300 flex items-center gap-3 hover:scale-105"
               >
-                <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
-                Try AI Chat
+                <MessageSquare className="w-5 h-5" strokeWidth={2.5} />
+                Ask AI Assistant
               </button>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="mt-12 pt-8 border-t border-white/10">
+              <div className="flex flex-wrap justify-center gap-8 text-white/80">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400" strokeWidth={2.5} />
+                  <span className="text-sm font-semibold">Enterprise Security</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400" strokeWidth={2.5} />
+                  <span className="text-sm font-semibold">99.9% Uptime</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400" strokeWidth={2.5} />
+                  <span className="text-sm font-semibold">SOC 2 Compliant</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          25% { transform: translate(20px, -20px) scale(1.05); }
-          50% { transform: translate(-15px, 15px) scale(0.95); }
-          75% { transform: translate(15px, 10px) scale(1.02); }
-        }
-        @keyframes float-delayed {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          25% { transform: translate(-25px, 20px) scale(1.08); }
-          50% { transform: translate(20px, -15px) scale(0.92); }
-          75% { transform: translate(-10px, -20px) scale(1.05); }
-        }
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
-        }
-        @keyframes bounce-slow {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-float { animation: float 20s ease-in-out infinite; }
-        .animate-float-delayed { animation: float-delayed 25s ease-in-out infinite; }
-        .animate-blink { animation: blink 1s infinite; }
-        .animate-bounce-slow { animation: bounce-slow 3s ease-in-out infinite; }
-        .animate-spin-slow { animation: spin-slow 8s linear infinite; }
-        .animate-fade-in-up { animation: fade-in-up 0.6s ease-out forwards; }
-        .perspective-1000 { perspective: 1000px; }
-        .rotate-y-5:hover { transform: rotateY(5deg); }
-        .rotate-y-6:hover { transform: rotateY(6deg); }
-      `}</style>
+        {/* Professional Benefits Section */}
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="text-center p-8 bg-white border-2 border-slate-200 rounded-2xl shadow-corporate hover:shadow-elevated transition-all duration-300 group">
+            <div className="w-16 h-16 mx-auto mb-6 rounded-xl bg-gradient-to-br from-slate-900 to-blue-900 flex items-center justify-center shadow-corporate group-hover:shadow-gold transition-all duration-300 group-hover:scale-110">
+              <Shield className="w-8 h-8 text-amber-400" strokeWidth={2.5} />
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 mb-3">Compliance Assurance</h3>
+            <p className="text-slate-600 leading-relaxed">
+              Ensure adherence to ISO 27001, GDPR, and HIPAA standards with AI-powered analysis
+            </p>
+          </div>
+
+          <div className="text-center p-8 bg-white border-2 border-slate-200 rounded-2xl shadow-corporate hover:shadow-elevated transition-all duration-300 group">
+            <div className="w-16 h-16 mx-auto mb-6 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-gold group-hover:shadow-gold-lg transition-all duration-300 group-hover:scale-110">
+              <TrendingUp className="w-8 h-8 text-white" strokeWidth={2.5} />
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 mb-3">70% Time Reduction</h3>
+            <p className="text-slate-600 leading-relaxed">
+              Automate manual processes and focus on strategic compliance initiatives
+            </p>
+          </div>
+
+          <div className="text-center p-8 bg-white border-2 border-slate-200 rounded-2xl shadow-corporate hover:shadow-elevated transition-all duration-300 group">
+            <div className="w-16 h-16 mx-auto mb-6 rounded-xl bg-gradient-to-br from-emerald-600 to-green-600 flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-110">
+              <BarChart3 className="w-8 h-8 text-white" strokeWidth={2.5} />
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 mb-3">Real-Time Insights</h3>
+            <p className="text-slate-600 leading-relaxed">
+              Get instant compliance status updates and actionable recommendations
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
